@@ -37,7 +37,7 @@ $(window).load(function() {
 
 <body>
 	<div class="headersection templete clear">
-		<a href="#">
+		<a href="index.php">
 			<div class="logo">
 				<img src="images/logo.png" alt="Logo"/>
 				<h2>Website Title</h2>
