@@ -32,7 +32,7 @@ include "inc/header.php";
 				<?php echo $row['body'];?>
 				
 				
-				}?>
+
 				<div class="relatedpost clear">
 					<h2>Related articles</h2>
 					<?php $catid = $row['cat'] ;
