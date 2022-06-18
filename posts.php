@@ -13,7 +13,7 @@ $fm = new Format();
 	if(!isset($_GET['category']) || $_GET['category'] == NULL ){
 		header("Location: 404.php");
 	}else{
-		$category = $_GET['category'] ;
+		$id = $_GET['category'] ;
 	}
 
 ?>
@@ -23,7 +23,7 @@ $fm = new Format();
 <div class="contentsection contemplete clear">
     <div class="maincontent clear">
     <?php 
-		$query = "SELECT * FROM tbl_post where cat = $category";
+		$query = "SELECT * FROM tbl_post where cat = $id";
 		$post = $db->select($query);
 		if( $post ){ 
 
@@ -33,7 +33,8 @@ $fm = new Format();
     <div class="samepost clear">
 				<h2><a href="post.php?id = <?php echo $row['id'];?>"><?php echo $row['title'];?></a></h2>
 				<h4><?php echo $fm->formatDate($row['date']);?>, By <a href="#"><?php echo $row['author']?></a></h4>
-				 <a href="#"><img src="admin/upload/<?php echo $row['image']?>" alt="post image"/></a>
+				<a href="post.php?id = <?php echo $rrow['id'];?>">
+					 <img src="admin/upload/<?php echo $rrow['image']?>" alt="post image"/></a>
 					<p>
 					<?php echo $fm->testShorten($row['body']);?>
 					</p>
