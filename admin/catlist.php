@@ -31,7 +31,7 @@
 						<tr class="odd gradeX">
 							<td><?php echo $i;?></td>
 							<td><?php echo $row['name'];?></td>
-							<td><a href="edutcat.php?catid=<?php echo $row['id']?>">Edit</a> || <a onclick="return confirm('Are you sure to delete?') ;" href="delcat.php?delid=<?php echo $row['id']?>">Delete</a></td>
+							<td><a  href="editcat.php?catid=<?php echo $row['id']?>"><button class="btn btn-primary" >Edit</button></a> || <a style="color:red" onclick="return confirm('Are you sure to delete?') ;" href="delcat.php?delid=<?php echo $row['id']?>"><button class="btn btn-primary">Delete</button></a></td>
 						</tr>
                         <?php }}?>	 
 					</tbody>
