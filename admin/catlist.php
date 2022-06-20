@@ -5,7 +5,22 @@
             <div class="box round first grid">
                 <h2>Category List</h2>
                 <div class="block">        
+            
+                <?php
+                    if(isset($_GET['delid'])){
+                        $delid = $_GET['delid'] ;
+                        $delquery = "delete from tbl_category  where id = '$delid'";
+                        $deldata = $db->delete($delquery) ;
 
+                        if( $deldata){
+                            echo "<span class='success'>Deleted successfully!</span>";
+                        }else{
+                            echo "<span class='error'>Data Not Deleted!</span>";
+                        }
+
+                    }
+                
+                ?>
             
         
                     <table class="data display datatable" id="example">
@@ -31,7 +46,7 @@
 						<tr class="odd gradeX">
 							<td><?php echo $i;?></td>
 							<td><?php echo $row['name'];?></td>
-							<td><a  href="editcat.php?catid=<?php echo $row['id']?>"><button class="btn btn-primary" >Edit</button></a> || <a style="color:red" onclick="return confirm('Are you sure to delete?') ;" href="delcat.php?delid=<?php echo $row['id']?>"><button class="btn btn-primary">Delete</button></a></td>
+							<td><a  href="editcat.php?catid=<?php echo $row['id']?>"><button class="btn btn-primary" >Edit</button></a> || <a style="color:red" onclick="return confirm('Are you sure to delete?') ;" href="?delid=<?php echo $row['id']?>"><button class="btn btn-primary">Delete</button></a></td>
 						</tr>
                         <?php }}?>	 
 					</tbody>
