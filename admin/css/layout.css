@@ -16,6 +16,14 @@ body {
   margin-top: -15px;
   width: 52px;
 }
+.success{
+	color:green ;
+	font-size:18px ;
+}
+.error{
+	color:red ;
+	font-size:18px ;
+}
 .middle {
   margin-left: 22px;
   margin-top: -14px;
