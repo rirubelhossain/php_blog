@@ -5,6 +5,9 @@
             <div class="box round first grid">
                 <h2>Category List</h2>
                 <div class="block">        
+
+            
+        
                     <table class="data display datatable" id="example">
 					<thead>
 						<tr>
@@ -14,48 +17,26 @@
 						</tr>
 					</thead>
 					<tbody>
+                    <?php
+                
+                $query = "select * from tbl_category order by id desc";
+                $result = $db->select($query);
+
+                if($result ){
+                    $i = 0 ;
+                    while( $row = $result->fetch_assoc()){
+                    $i++ ;
+                    
+                ?>
 						<tr class="odd gradeX">
-							<td>01</td>
-							<td>Internet</td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
+							<td><?php echo $i;?></td>
+							<td><?php echo $row['name'];?></td>
+							<td><a href="edutcat.php?catid=<?php echo $row['id']?>">Edit</a> || <a onclick="return confirm('Are you sure to delete?') ;" href="delcat.php?delid=<?php echo $row['id']?>">Delete</a></td>
 						</tr>
-						<tr class="even gradeC">
-							<td>02</td>
-							<td>Explorer </td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-						<tr class="odd gradeX">
-							<td>03</td>
-							<td>Internet</td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-						<tr class="even gradeC">
-							<td>04</td>
-							<td>Explorer </td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-							<tr class="odd gradeX">
-							<td>05</td>
-							<td>Internet</td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-						<tr class="even gradeC">
-							<td>06</td>
-							<td>Explorer </td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-						<tr class="odd gradeX">
-							<td>07</td>
-							<td>Internet</td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-						<tr class="even gradeC">
-							<td>08</td>
-							<td>Explorer </td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
+                        <?php }}?>	 
 					</tbody>
 				</table>
+                
                </div>
             </div>
         </div>
