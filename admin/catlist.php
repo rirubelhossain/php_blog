@@ -17,12 +17,8 @@
                         }else{
                             echo "<span class='error'>Data Not Deleted!</span>";
                         }
-
                     }
-                
                 ?>
-            
-        
                     <table class="data display datatable" id="example">
 					<thead>
 						<tr>
@@ -40,8 +36,7 @@
                 if($result ){
                     $i = 0 ;
                     while( $row = $result->fetch_assoc()){
-                    $i++ ;
-                    
+                    $i++ ;  
                 ?>
 						<tr class="odd gradeX">
 							<td><?php echo $i;?></td>
@@ -51,11 +46,9 @@
                         <?php }}?>	 
 					</tbody>
 				</table>
-                
                </div>
             </div>
         </div>
-
 <script type="text/javascript">
     $(document).ready(function () {
         setupLeftMenu();

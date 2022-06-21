@@ -26,10 +26,19 @@
                             <td>
                                 <select id="select" name="select">
                                     <option>Select Category</option>
-                                    <option value="1">Category One</option>
-                                    <option value="2">Category Two</option>
-                                    <option value="3">Cateogry Three</option>
+
+                            <?php
+                                $query = "select * from tbl_category ";
+                                $catresult = $db->select($query);
+
+                                if( $catresult){
+                                    while($row = $catresult->fetch_assoc()){
+
+                            ?>                        
+                                    <option value="1"><?php echo $row['name'];?></option>
+                                    <?php }}?>
                                 </select>
+                                
                             </td>
                         </tr>
                         <tr>
