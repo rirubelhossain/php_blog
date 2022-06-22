@@ -1,9 +1,15 @@
+
+<?php include "inc/header.php";?>
+<?php include "inc/slider.php";?>
+
 <?php
-include "inc/header.php";
+$db = new Database();
+$fm = new Format();
+
 ?>
 
+ 
 <?php
-
 	if(!isset($_GET['search']) || $_GET['search'] == NULL ){
 		header("Location: 404.php");
 	}else{
@@ -13,45 +19,33 @@ include "inc/header.php";
 ?>
 
 
-	<div class="contentsection contemplete clear">
-		<div class="maincontent clear">
-			<div class="about">
 
-			<?php
-				$query = "select * from tbl_post where title like '%$search%' or body like '%$search%'";
-				$post = $db ->select($query) ;
+<div class="contentsection contemplete clear">
+    <div class="maincontent clear">
+    <?php 
+		$query = "SELECT * FROM tbl_post where title LIKE '%$search' or body LIKE '%$search'";
+		$post = $db->select($query);
+		if( $post ){ 
 
-				if($post){
-					while( $row = $post->fetch_assoc()){
-			
-			?>
+			while($row = $post->fetch_assoc()){
 
-				<h2><?php echo $row['title'];?></h2>
+		?>
+    <div class="samepost clear">
+				<h2><a href="post.php?id = <?php echo $row['id'];?>"><?php echo $row['title'];?></a></h2>
 				<h4><?php echo $fm->formatDate($row['date']);?>, By <a href="#"><?php echo $row['author']?></a></h4>
-				<a href="#"><img src="admin/upload/<?php echo $row['image']?>" alt="post image"/></a>
-				<?php echo $row['body'];?>
-				
-				
-
-				<div class="relatedpost clear">
-					<h2>Related articles</h2>
-					<?php $catid = $row['cat'] ;
-						$queryrelated = "select * from tbl_post where cat = '$catid' order by rand() limit 6";
-						$relatedpost = $db->select($queryrelated);
-						if( $relatedpost){
-							while( $rrow = $relatedpost->fetch_assoc()){ 
-						
-					?>
-					<a href="post.php?id = <?php echo $rrow['id'];?>">
-					 <img src="admin/upload/<?php echo $rrow['image']?>" alt="post image"/></a>
-					<?php }}else { echo "No Related Post Available !!";}?>
+				<a href="post.php?id = <?php echo $row['id'];?>">
+					 <img src="admin/<?php echo $row['image']?>" alt="post image"/></a>
+					<p>
+					<?php echo $fm->testShorten($row['body']);?>
+					</p>
+				<div class="readmore clear">
+					<a href="post.php?id=<?php echo $row['id'];?>">Read More</a>
 				</div>
-				<?php }}else{ ?>
-                    
-                    <p>Data Not found</p>
-                    <?php }?>
+			</div>
+            <?php } }else { ?>
+			<p>Your Search Query Not Found!!.</p>
+		<?php } ?>
 
-	</div>
 </div>
-	<?php include "inc/sidebar.php";?>
-	<?php include "inc/footer.php";?>
+<?php include "inc/sidebar.php";?>
+<?php include "inc/footer.php";?>

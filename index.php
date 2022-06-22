@@ -36,7 +36,7 @@ $fm = new Format();
 			<div class="samepost clear">
 				<h2><a href="post.php?id = <?php echo $row['id'];?>"><?php echo $row['title'];?></a></h2>
 				<h4><?php echo $fm->formatDate($row['date']);?>, By <a href="#"><?php echo $row['author']?></a></h4>
-				 <a href="#"><img src="admin/upload/<?php echo $row['image']?>" alt="post image"/></a>
+				 <a href="#"><img src="admin/<?php echo $row['image']?>" alt="post image"/></a>
 					<p>
 					<?php echo $fm->testShorten($row['body']);?>
 					</p>

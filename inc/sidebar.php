@@ -30,7 +30,7 @@
 					<div class="popular clear">
 						<h3><a href="post.php?id=<?php echo $row['id'];?>"><?php echo $row['title'];?></a></h3>
 						
-						<a href="post.php?id = <?php echo $row['id'];?>"> <img src="admin/upload/<?php echo $row['image'];?>" alt="post image"/></a>
+						<a href="post.php?id = <?php echo $row['id'];?>"> <img src="admin/<?php echo $row['image'];?>" alt="post image"/></a>
 						<p><?php echo $fm->testShorten($row['body'],120);?></p>	
 					</div>
 					<?php } }else {
