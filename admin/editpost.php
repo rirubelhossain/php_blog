@@ -10,10 +10,7 @@ if(!isset($_GET['editpostid']) || $_GET['editpostid'] == NULL ){
     $postid = $_GET['editpostid'];
 }
 
-
 ?>
-
-
 
         <div class="grid_10">
 		
@@ -43,32 +40,67 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if( $title == "" || $cat == "" || $body == "" || $tags == "" || $author == ""){
         echo "<span class='error'>Filed must not be empty!</span>";
-    }elseif(empty($file_name)) {
-        echo "<span class='error'>Please Select any Image !</span>";
-        
-       }elseif ($file_size >1048567) {
-        echo "<span class='error'>Image Size should be less then 1MB!
-        </span>";
+    }else{
+    
+    if( !empty($file_name)){
+    
+        if ($file_size >1048567) {
+            echo "<span class='error'>Image Size should be less then 1MB!
+            </span>";
 
-       } elseif (in_array($file_ext, $permited) === false) {
-        echo "<span class='error'>You can upload only:-"
-        .implode(', ', $permited)."</span>";
+        } elseif (in_array($file_ext, $permited) === false) {
+            echo "<span class='error'>You can upload only:-"
+            .implode(', ', $permited)."</span>";
 
-       } else{
-            move_uploaded_file($file_temp, $uploaded_image);
-            $query = "INSERT INTO tbl_post(cat,title,body,image,author,tags) 
-            VALUES('$cat','$title','$body','$uploaded_image','$author','$tags')";
-            $inserted_rows = $db->insert($query);
+        } else{
+                
+                //$query = "INSERT INTO tbl_post(cat,title,body,image,author,tags) 
+                //VALUES('$cat','$title','$body','$uploaded_image','$author','$tags')";
 
-            if ($inserted_rows) {
-                echo "<span class='success'>Post Inserted Successfully.
-                </span>";
-            }else {
-                echo "<span class='error'>Post Not Inserted !</span>";
-            }
+                move_uploaded_file($file_temp, $uploaded_image);
+                $query = "UPDATE tbl_post
+                SET
+                cat = '$cat',
+                title = '$title',
+                body = '$body',
+                image = '$uploaded_image',
+                author = '$author',
+                tags = '$tags'
+                where id = '$postid'
+                ";
 
 
+                $updated_rows = $db->update($query);
+
+                if ($updated_rows) {
+                    echo "<span class='success'>Data Updated Successfully.
+                    </span>";
+                }else {
+                    echo "<span class='error'>Data Not updated!</span>";
+                }
+        }
+    }else{
+        $query = "UPDATE tbl_post
+        SET
+        cat = '$cat',
+        title = '$title',
+        body = '$body' ,
+        author = '$author',
+        tags = '$tags'
+        where id = '$postid'
+        ";
+
+
+        $updated_rows = $db->update($query);
+
+        if ($updated_rows) {
+            echo "<span class='success'>Data Updated Successfully.
+            </span>";
+        }else {
+            echo "<span class='error'>Data Not updated!</span>";
+        }
     }
+}
 }
 ?>
 
@@ -85,7 +117,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 ?>
 
 
-                 <form action="addpost.php" method="POST" enctype="multipart/form-data">
+                 <form action="" method="POST" enctype="multipart/form-data">
                     <table class="form">
                        
                         <tr>
