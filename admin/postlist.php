@@ -43,7 +43,7 @@
 							<td><?php echo $row['author']?></td>
 							<td><?php echo $row['tags'];?></td>
 							<td><?php echo $fm->formatDate($row['date']) ;?></td>
-							<td><a href="editpost.php?editpostid=<?php echo $row['id'];?>">Edit</a> || <a href="deletepost.php?delposttid=<?php echo $row['id'];?>" onclick="return confirm('Are you sure to delete?') ;" >Delete</a></td>
+							<td><a href="editpost.php?editpostid=<?php echo $row['id'];?>">Edit</a> || <a href="deletepost.php?delpostid=<?php echo $row['id'];?>" onclick="return confirm('Are you sure to delete?') ;" >Delete</a></td>
 						</tr>
 						<?php }}?>
 						 

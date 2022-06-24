@@ -43,7 +43,7 @@ include "inc/header.php";
 						
 					?>
 					<a href="post.php?id = <?php echo $rrow['id'];?>">
-					 <img src="admin/<?php echo $rrow['image']?>" alt="post image"/></a>
+					 <!--<img src="admin/<?//php echo $rrow['image']?>" alt="post image"/></a>-->
 					<?php }}else { echo "No Related Post Available !!";}?>
 				</div>
 				<?php }}else{ header("Location: 404.php");}?>
