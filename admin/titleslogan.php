@@ -15,11 +15,99 @@ width:70% ;
 }
 
 </style>
+
+
+
+
+
         <div class="grid_10">
 		
             <div class="box round first grid">
                 <h2>Update Site Title and Description</h2>
 
+                <?php
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    
+    $title = $fm->validation($_POST['title']);
+    $slogan = $fm->validation($_POST['slogan']);
+    $title = mysqli_real_escape_string($db->link , $title);
+    $slogan = mysqli_real_escape_string($db->link , $slogan);
+
+
+    ///image validation code here 
+    $permited  = array('png');
+    $file_name = $_FILES['logo']['name'];
+    $file_size = $_FILES['logo']['size'];
+    $file_temp = $_FILES['logo']['tmp_name'];
+
+    $div = explode('.', $file_name);
+    $file_ext = strtolower(end($div));
+    $same_image = 'logo'.'.'.$file_ext;
+    $uploaded_image = "upload/".$same_image;
+
+    if( $title == "" || $slogan == "" ){
+        echo "<span class='error'>Filed must not be empty!</span>";
+    }else{
+    
+    if( !empty($file_name)){
+    
+        if ($file_size > 1048567) {
+            echo "<span class='error'>Image Size should be less then 1MB!
+            </span>";
+
+        } elseif (in_array($file_ext, $permited) === false) {
+            echo "<span class='error'>You can upload only:-"
+            .implode(', ', $permited)."</span>";
+
+        } else{
+                
+                //$query = "INSERT INTO tbl_post(cat,title,body,image,author,tags) 
+                //VALUES('$cat','$title','$body','$uploaded_image','$author','$tags')";
+
+                move_uploaded_file($file_temp, $uploaded_image);
+                $query = "UPDATE title_slogan
+                SET
+                title = '$title',
+                slogan = '$slogan',
+                logo = '$uploaded_image' 
+                
+                where id = '1'
+                ";
+
+
+                $updated_rows = $db->update($query);
+
+                if ($updated_rows) {
+                    echo "<span class='success'>Data Updated Successfully.
+                    </span>";
+                }else {
+                    echo "<span class='error'>Data Not updated!</span>";
+                }
+        }
+    }else{
+        $query = "UPDATE title_slogan
+        SET
+        title = '$title',
+        slogan = '$slogan'
+        
+        where id = '1'
+        ";
+
+
+
+        $updated_rows = $db->update($query);
+
+        if ($updated_rows) {
+            echo "<span class='success'>Data Updated Successfully.
+            </span>";
+        }else {
+            echo "<span class='error'>Data Not updated!</span>";
+        }
+    }
+}
+}
+?>
 
 <?php
 $query = "select * from title_slogan where id = '1'";
@@ -35,7 +123,7 @@ if( $blog_title ){
                 <div class="block sloginblock">  
                     
                 <div class="leftside">
-                 <form>
+                <form action="" method="POST" enctype="multipart/form-data">
                     <table class="form">					
                         <tr>
                             <td>
