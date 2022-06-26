@@ -18,7 +18,7 @@
 	?>
 
 
-	  <p>&copy; <?php echo $row['copyright'];?>.</p>
+	  <p>&copy; <?php echo $row['copyright'];?><?php echo " ".date('Y');?>.</p>
 	  <?php }} ?>
 	</div>
 	<div class="fixedicon clear">
