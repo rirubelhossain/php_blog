@@ -1,3 +1,7 @@
+ 
+ 
+
+
 <div class="grid_2">
             <div class="box sidemenu">
                 <div class="block" id="section-menu">
@@ -11,12 +15,22 @@
                             </ul>
                         </li>
 						
-                         <li><a class="menuitem">Update Pages</a>
+                         <li><a class="menuitem">Pages</a>
                             <ul class="submenu">
-                                <li><a>About Us</a></li>
-                                <li><a>Contact Us</a></li>
+                                <li><a href="addpage.php">Add New Pages</a></li>
+                                <?php
+                                    $query = "select * from tbl_page ";
+                                    $result_page = $db->select($query);
+
+                                    if($result_page ){
+                                        while($row = $result_page->fetch_assoc()){
+
+                                    ?>
+                                <li><a href="page.php?pageid=<?php echo $row['id'];?>"><?php echo $row['name'];?></a></li>
+                                <?php }} ?>
                             </ul>
                         </li>
+                 
                         <li><a class="menuitem">Category Option</a>
                             <ul class="submenu">
                                 <li><a href="addcat.php">Add Category</a> </li>
