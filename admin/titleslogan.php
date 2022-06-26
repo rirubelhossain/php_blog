@@ -26,7 +26,7 @@ width:70% ;
                 <h2>Update Site Title and Description</h2>
 
                 <?php
-
+/// Updated code 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     $title = $fm->validation($_POST['title']);
