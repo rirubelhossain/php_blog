@@ -4,7 +4,7 @@
 <?php include 'inc/sidebar.php'?>
         <div class="grid_10">
             <div class="box round first grid">
-                <h2>Page</h2>
+                <h2>Edit Page</h2>
 
 <?php
 
@@ -100,6 +100,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <td></td>
                             <td>
                                 <input type="submit" name="submit" Value="Update" />
+                                <a onclick="return confirm('Are you sure to delete?') ;" href="delpage.php?delid=<?php echo $row['id']?>">Delete</a>
                             </td>
                         </tr>
                     </table>
