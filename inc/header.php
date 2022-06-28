@@ -8,11 +8,46 @@ $fm = new Format();
 
 ?>
 
-
+ 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Basic Website</title>
+	
+	<?php
+
+		if( isset($_GET['pageid']) ){
+			$pageid = $_GET['pageid'] ;
+
+			$query = "select * from tbl_page where id = '$pageid'" ;
+			$page_result = $db->select($query);
+
+			if( $page_result ){
+				while( $row = $page_result->fetch_assoc()){ ?>
+					<title><?php echo $row['name'];?> - <?php echo TITLE;?></title>
+					 
+				<?php }}}elseif( isset($_GET['id']) ){
+				$postid = $_GET['id'] ;
+
+				$query = "select * from tbl_post where id = '$postid'" ;
+				$post_id = $db->select($query);
+
+				if( $post_id ){
+					while( $row = $post_id->fetch_assoc()){ ?>
+					<title><?php echo $row['title'];?> - <?php echo TITLE;?></title>
+					 
+				<?php }}}
+				
+				else{ ?>
+					<title><?php echo $fm->title();?> - <?php echo TITLE;?></title>
+				<?php }?>
+
+
+
+			
+	
+
+
+	
 	<meta name="language" content="English">
 	<meta name="description" content="It is a website about education">
 	<meta name="keywords" content="blog,cms blog">
@@ -48,6 +83,7 @@ $(window).load(function() {
 </head>
 
 <body>
+	
 	<div class="headersection templete clear">
 		<a href="index.php">
 			<div class="logo">
