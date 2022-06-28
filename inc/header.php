@@ -105,8 +105,17 @@ $(window).load(function() {
 <div class="navsection templete">
 	<ul>
 		<li><a id="active" href="index.php">Home</a></li>
-		
-		<li><a href="about.php">About</a></li>	
+
+		 <?php
+			$query = "select * from tbl_page ";
+			$result_page = $db->select($query);
+
+			if($result_page ){
+				while($row = $result_page->fetch_assoc()){
+
+			?>
+		<li><a href="page.php?pageid=<?php echo $row['id'];?>"><?php echo $row['name'];?></a></li>
+		<?php }} ?>
 		<li><a href="contact.php">Contact</a></li>
 	</ul>
 </div>
