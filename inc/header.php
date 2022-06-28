@@ -139,8 +139,21 @@ $(window).load(function() {
 		</div>
 	</div>
 <div class="navsection templete">
+
+	<?php
+		$path = $_SERVER['SCRIPT_FILENAME'];
+		$currentpage = basename($path , '.php');
+	
+	?>
+
 	<ul>
-		<li><a id="active" href="index.php">Home</a></li>
+		<li><a  
+		<?php
+			if( $currentpage == 'index'){
+				echo 'id="active"';
+			}
+		?>
+		href="index.php">Home</a></li>
 
 		 <?php
 			$query = "select * from tbl_page ";
@@ -150,8 +163,22 @@ $(window).load(function() {
 				while($row = $result_page->fetch_assoc()){
 
 			?>
-		<li><a href="page.php?pageid=<?php echo $row['id'];?>"><?php echo $row['name'];?></a></li>
+		<li><a 
+			<?php 
+				if(isset($_GET['pageid']) && $_GET['pageid'] == $row['id']){
+					echo 'id="active"';
+				}
+			?>
+		
+		href="page.php?pageid=<?php echo $row['id'];?>"><?php echo $row['name'];?></a></li>
 		<?php }} ?>
-		<li><a href="contact.php">Contact</a></li>
+		<li><a 
+		<?php
+			if( $currentpage == 'contact'){
+				echo 'id="active"';
+			}
+		?>
+		
+		href="contact.php">Contact</a></li>
 	</ul>
 </div>
