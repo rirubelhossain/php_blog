@@ -28,7 +28,18 @@ include "inc/header.php";
 		}else if( empty($body)){
 			$error = "Body must not be empty";
 		}else{
-			$msg = "Ok";
+			$query = "INSERT INTO tbl_contact(firstname,lastname,email,body)
+			VALUES('$fname','$lname','$email','$body')";
+
+			$contact_page = $db->insert($query);
+
+			if( $contact_page ){
+				$msg ="Message Sent Successfully!";
+			}else {
+				$error = "Message Not sent successfully!";
+			}
+			
+
 		}
 
 	}
