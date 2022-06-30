@@ -36,7 +36,7 @@
 							<td><?php echo $fm->formatDate($row['date']);?></td>
 							<td>
 								<a href="viewmsg.php?msgid=<?php echo $row['id'];?>">View</a> ||
-								<a href="replymsg.php?msgid=<?php echo $row['id']?>">Reply</a> ||
+								<a href="replaymsg.php?msgid=<?php echo $row['id']?>">Reply</a> ||
 								<a href="?seenid=<?php echo $row['id']?>">Seen</a> ||
 							</td>
 						</tr>
