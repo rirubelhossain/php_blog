@@ -25,7 +25,7 @@ $fm = new Format();
 			?>
 		<!--Pagination-->
 		<?php 
-		$query = "SELECT * FROM tbl_post limit $start_from , $per_page";
+		$query = "SELECT * FROM tbl_post where status = '1' limit $start_from , $per_page ";
 		$post = $db->select($query);
 		if( $post ){ 
 
