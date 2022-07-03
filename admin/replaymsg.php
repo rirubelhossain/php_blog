@@ -99,6 +99,7 @@
                             <td></td>
                             <td>
                                 <input type="submit" name="submit" Value="Send" />
+                                <a href="inbox.php">Back</a>
                             </td>
                         </tr>
                     </table>
