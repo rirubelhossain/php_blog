@@ -7,6 +7,28 @@
         <div class="grid_10">
             <div class="box round first grid">
                 <h2>Inbox</h2>
+				<?php
+			/// unseen functionality 
+
+				if( isset($_GET['unseenid'])){
+					$unseenid = $_GET['unseenid'];
+					$query = "UPDATE tbl_contact 
+										SET 
+
+										status = '0' 
+										where id = '$unseenid'
+									";
+
+									$result_seenid = $db->update($query);
+									if( $result_seenid){
+										echo "<span class = 'success'>Message Unseen</span>";
+									}else{
+										echo "<span class = 'error'>Message not unseen</span>";
+									}
+				}
+			?>
+
+			
 
 				<?php
 					if(isset($_GET['seenid'])){
@@ -74,6 +96,23 @@
 
 			<div class="box round first grid">
                 <h2>Seen Message</h2>
+				
+				<?php
+					/// Message delete section 
+					if(isset($_GET['delid'])){
+						$delid = $_GET['delid'];
+
+						$query = "DELETE from tbl_contact where id = '$delid'";
+						$result_delid = $db->update($query);
+						if( $result_delid){
+							echo "<span class = 'success'>Data has been deleted</span>";
+						}else{
+							echo "<span class = 'error'>Data not deleted</span>";
+						}
+					}
+				?>
+
+
                 <div class="block">        
 				<table class="data display datatable" id="example">
 					<thead>
@@ -105,7 +144,9 @@
 							<td><?php echo $fm->testShorten($row['body'],30);?></td>
 							<td><?php echo $fm->formatDate($row['date']);?></td>
 							<td>
-								<a onclick="return confirm('Are sent the message into the sent box')" href="?delid=<?php echo $row['id'];?>">Delete</a> ||
+								<a href="viewmsg.php?msgid=<?php echo $row['id'];?>">View</a> ||
+								<a href="?unseenid=<?php echo $row['id'];?>">Unseen</a> ||
+								<a onclick="return confirm('Are you want to delete?')" href="?delid=<?php echo $row['id'];?>">Delete</a>
 								 
 							</td>
 						</tr>

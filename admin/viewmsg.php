@@ -62,7 +62,14 @@
                                 <input type="text" readonly name ="email" value="<?php echo $row['email'];?>" class="medium" />
                             </td>
                         </tr>
-                        
+                        <tr>
+                            <td>
+                                <label>Date</label>
+                            </td>
+                            <td>
+                                <input type="text" readonly name ="date" value="<?php echo $fm->formatDate($row['date'])?>" class="medium" />
+                            </td>
+                        </tr>
                         <tr>
                             <td>
                                 <label>Message</label>
@@ -75,14 +82,7 @@
                                 </textarea>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <label>Date</label>
-                            </td>
-                            <td>
-                                <input type="text" readonly name ="date" value="<?php echo $fm->formatDate($row['date'])?>" class="medium" />
-                            </td>
-                        </tr>
+                       
                         
                             <td></td>
                             <td>
