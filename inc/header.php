@@ -50,6 +50,24 @@ $fm = new Format();
 	
 	<meta name="language" content="English">
 	<meta name="description" content="It is a website about education">
+	
+	<?php
+		if(isset($_GET['id'])){
+			$keywords = $_GET['id'] ;
+			$query = "select * from tbl_post where id = '$keywords'" ;
+			$result_keywrods = $db->select($query);
+
+			if( $result_keywrods ){
+				while($row = $result_keywrods->fetch_assoc()){ ?>
+					<meta name="keywords" content="<?php echo $row['tags'];?>">
+			<?php 
+			 	}}}else{?>
+					 <meta name="keywords" content="<?php echo KEYWORDS ;?>">
+				
+				<?php	}
+			
+		?>
+
 	<meta name="keywords" content="blog,cms blog">
 	<meta name="author" content="Delowar">
  
