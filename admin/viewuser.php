@@ -1,8 +1,5 @@
-
-
 <?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php'?>
-
 
 <?php
     if(!isset($_GET['userid']) || $_GET['userid'] == NULL ){
@@ -11,16 +8,11 @@
         $userid = $_GET['userid'] ;
     }
  
-
 ?>
- 
-
-        <div class="grid_10">
-		
+        <div class="grid_10">		
             <div class="box round first grid">
                 <h2>User Details</h2>
 <?php
-
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     echo "<script>window.location = 'userlist.php'; </script>";
 }

@@ -124,7 +124,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <label>Author</label>
                             </td>
                             <td>
-                                <input type="text" name ="author" placeholder="Enter Author Name..." class="medium" />
+                                <input type="text" name ="author"  value="<?php echo Session::get("username");?>" class="medium" />
                             </td>
                         </tr>
 						<tr>

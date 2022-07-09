@@ -1,19 +1,22 @@
 <?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php'?>
 
-        <div class="grid_10">
-		
+<?php
+
+    if(!Session::get("userRole") == '0'){
+        echo "<script>window.location = 'index.php' ; </script>";
+    }
+
+?>
+   <div class="grid_10">		
             <div class="box round first grid">
                 <h2>Add New User</h2>
                <div class="block copyblock"> 
-
                <?php
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $username = $fm->validation($_POST['username']);
                     $password = $fm->validation(md5($_POST['password']));
                     $role = $fm->validation($_POST['role']);
-
-
 
                     $username = mysqli_real_escape_string($db->link , $username);
                     $password = mysqli_real_escape_string($db->link , $password);

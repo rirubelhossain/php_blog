@@ -60,7 +60,10 @@
                                 ?>
                         
                             </td>
-							<td><a  href="viewuser.php?userid=<?php echo $row['id']?>"><button class="btn btn-primary" >Edit</button></a> || <a style="color:red" onclick="return confirm('Are you sure to delete?') ;" href="?deluser=<?php echo $row['id']?>"><button class="btn btn-primary">Delete</button></a></td>
+							<td><a href="viewuser.php?userid=<?php echo $row['id']?>"><button class="btn btn-primary" >Edit</button></a>
+                            <?php if(Session::get("userRole") == '0'){?>
+                            <a style="color:red" onclick="return confirm('Are you sure to delete?') ;" href="?deluser=<?php echo $row['id']?>"><button class="btn btn-primary">Delete</button></a></td>
+                            <?php }?>
 						</tr>
                         <?php }}?>	 
 					</tbody>
